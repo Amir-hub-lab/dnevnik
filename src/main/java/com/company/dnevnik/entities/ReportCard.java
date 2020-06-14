@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "ReportCards")
+@Table
 
 public class ReportCard {
     @Id
@@ -23,9 +23,9 @@ public class ReportCard {
     @JoinColumn(name = "HW_id", referencedColumnName = "id")
     HW hw;
     @ManyToOne
-    @JoinColumn(name = "mark_id", referencedColumnName = "id")
-    Mark mark;
-    @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "id")
     Student student;
+    @ManyToOne
+    @JoinColumn(name = "discipline_id", referencedColumnName = "id")
+    Discipline discipline;
 }

@@ -32,4 +32,8 @@ public class HW {
     @OneToOne
     @JoinColumn(name = "topic_id", referencedColumnName = "id")
     Topic topic;
+
+    @ManyToOne
+    @JoinColumn(name = "report_card_id", referencedColumnName = "id")
+    ReportCard reportCard;
 }
