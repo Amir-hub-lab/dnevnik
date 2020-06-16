@@ -15,7 +15,7 @@ import java.util.Date;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "users")
+@Table(name = "teacher")
 
 public class Teacher {
     @Id
@@ -43,11 +43,12 @@ public class Teacher {
     @Column(name = "is_active")
     Integer isActive;
 
+    @Builder.Default
     @CreatedDate
     @Column(name = "registration_date")
     Date registrationDate = new Date();
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "discipline_id", referencedColumnName = "id")
     Discipline discipline;
 }

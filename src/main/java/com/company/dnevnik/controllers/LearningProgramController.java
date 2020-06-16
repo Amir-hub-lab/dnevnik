@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/learningProgram")
+@RequestMapping("/learning_program")
 public class LearningProgramController {
     @Autowired
     LearningProgramService learningProgramService;
