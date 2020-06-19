@@ -15,7 +15,7 @@ import java.util.Date;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "student")
+@Table(name = "students")
 
 public class Student {
     @Id

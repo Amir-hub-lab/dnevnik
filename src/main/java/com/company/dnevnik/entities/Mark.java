@@ -13,12 +13,13 @@ import javax.persistence.*;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "mark")
+@Table(name = "marks")
 
 public class Mark {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
+
 
     @Column(name = "mark")
     Integer mark;

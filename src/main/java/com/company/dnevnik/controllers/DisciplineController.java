@@ -3,13 +3,14 @@ package com.company.dnevnik.controllers;
 import com.company.dnevnik.entities.Discipline;
 import com.company.dnevnik.services.DisciplineService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+@ComponentScan(basePackages = "com.company.dnevnik.controllers")
 @Controller
 @RequestMapping("/discipline")
 public class DisciplineController {

@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "discipline")
+@Table(name = "disciplines")
 
 public class Discipline {
     @Id

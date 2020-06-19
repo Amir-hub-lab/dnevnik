@@ -15,7 +15,7 @@ import java.util.Date;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "hw")
+@Table(name = "hws")
 
 public class HW {
     @Id
@@ -25,6 +25,7 @@ public class HW {
     @Column(name = "comment_text")
     String commentText;
 
+    @Builder.Default
     @CreatedDate
     @Column(name = "date")
     Date date = new Date();
