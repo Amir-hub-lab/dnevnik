@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 @ComponentScan(basePackages = "com.company.dnevnik.controllers")
 @Controller
-@RequestMapping("/discipline")
+@RequestMapping("discipline")
 public class DisciplineController {
     @Autowired
     DisciplineService disciplineService;

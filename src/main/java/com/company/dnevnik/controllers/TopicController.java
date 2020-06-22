@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/topic")
+@RequestMapping("topic")
 public class TopicController {
     @Autowired
     TopicService topicService;

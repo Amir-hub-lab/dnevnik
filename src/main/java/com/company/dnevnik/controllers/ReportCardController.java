@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/report_card")
+@RequestMapping("report_card")
 public class ReportCardController {
     @Autowired
     ReportCardService reportCardService;

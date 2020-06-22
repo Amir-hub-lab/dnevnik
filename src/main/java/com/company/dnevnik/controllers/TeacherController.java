@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/teacher")
+@RequestMapping("teacher")
 public class TeacherController {
     @Autowired
     TeacherService teacherService;

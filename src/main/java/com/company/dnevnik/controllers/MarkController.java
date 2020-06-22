@@ -11,7 +11,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/mark")
+@RequestMapping("mark")
 public class MarkController {
     @Autowired
     MarkService markService;
