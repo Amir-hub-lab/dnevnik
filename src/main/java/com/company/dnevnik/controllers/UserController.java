@@ -7,39 +7,41 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.List;
-
 @Controller
-@RequestMapping("user")
+@RequestMapping("/users")
 public class UserController {
+
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/list")
-    public String getUserList(Model model) {
-        List<User> userList = userService.getAllUsers();
-        model.addAttribute("userList", userList);
-        model.addAttribute("bool", true);
-        return "userList";
+    @GetMapping("/{userId}")
+    public String getSaveUser(Model model, @PathVariable(value = "userId", required = false) Long userId){
+        model.addAttribute("user", userId == null ? new User() : userService.getUserById(userId));
+        return "user/userSaving";
     }
 
-    @GetMapping(value = "/{id}")
-    public String userProfile(@PathVariable("id") Long id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        return "userDetail";
+    @GetMapping("/new")
+    public String getSaveNewUser(Model model){
+        model.addAttribute("user", new User());
+        return "user/userSaving";
     }
 
-    @PostMapping(value = "/create")
-    public String addUser(@Valid @ModelAttribute("user") User user) {
+    @PostMapping
+    public String saveNewUser(@ModelAttribute User user){
         userService.saveUser(user);
-        return "redirect:/user/list";
+        return "redirect:/user/usersList";
     }
 
-    @PostMapping(value = "/delete/{id}")
-    public String deleteById(@PathVariable("id") Long id) {
-        userService.deleteUserById(id);
-        return "redirect:/user/list";
+    @GetMapping("/usersList")
+    public String getAllUsers(Model model){
+        model.addAttribute("allUsers", userService.getAllUsers());
+        return "user/usersList";
     }
+
+    @GetMapping("/delete/{userId}")
+    public String deleteUser(@PathVariable("userId") Long userId){
+        userService.deleteUserById(userId);
+        return "redirect:/user/usersList";
+    }
+
 }
