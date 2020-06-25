@@ -15,18 +15,19 @@ import java.util.Date;
 @Builder
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "students")
+@Table(name = "users")
 
-public class Student {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @OneToOne
-    @JoinColumn(name = "id",referencedColumnName = "id")
-    User user;
+    @Column(name = "login", unique = true)
+    String login;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_id", referencedColumnName = "id")
-    Parent parent;
+    @Column(name = "password")
+    String password;
+
+    @Column(name = "email")
+    String email;
 }

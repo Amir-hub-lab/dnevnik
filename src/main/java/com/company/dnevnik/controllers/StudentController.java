@@ -19,9 +19,9 @@ public class StudentController {
     @GetMapping(value = "/list")
     public String getStudentList(Model model) {
         List<Student> studentList = studentService.getAllStudents();
-        model.addAttribute("studentList", studentList);
+        model.addAttribute("student", studentList);
         model.addAttribute("bool", true);
-        return "studentList";
+        return "studentsList";
     }
 
     @GetMapping(value = "/{id}")

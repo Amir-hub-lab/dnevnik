@@ -22,31 +22,9 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @Column(name = "login", unique = true)
-    String login;
-
-    @Column(name = "password")
-    String password;
-
-    @Column(name = "email")
-    String email;
-
-    @Column(name = "phone_number")
-    String phoneNumber;
-
-    @Column(name = "first_name")
-    String firstName;
-
-    @Column(name = "last_name")
-    String lastName;
-
-    @Column(name = "is_active")
-    Integer isActive;
-
-    @Builder.Default
-    @CreatedDate
-    @Column(name = "registration_date")
-    Date registrationDate = new Date();
+    @OneToOne
+    @JoinColumn(name = "id",referencedColumnName = "id")
+    User user;
 
     @ManyToOne
     @JoinColumn(name = "discipline_id", referencedColumnName = "id")
