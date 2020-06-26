@@ -2,9 +2,26 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Main page</title>
 </head>
-<body>
-Hello world!
+
+<body background="${pageContext.request.contextPath}/resources/images/black.jpg">>
+    <header class="header">
+        <div class="container">
+            <div class="header_inner">
+                <div class="header_logo">ProGrade</div>
+                <nav class="nav">
+                    <a class="nav_link" href="#">Contact us</a>
+                    <a class="nav_link" href="#">Instruction</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="intro">
+        <div class="container">
+        </div>
+    </div>
 </body>
 </html>
