@@ -1,5 +1,5 @@
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
@@ -7,14 +7,14 @@
     <title>Main page</title>
 </head>
 
-<body background="${pageContext.request.contextPath}/resources/images/black.jpg">>
+<body>
     <header class="header">
         <div class="container">
             <div class="header_inner">
                 <div class="header_logo">ProGrade</div>
                 <nav class="nav">
-                    <a class="nav_link" href="#">Contact us</a>
                     <a class="nav_link" href="#">Instruction</a>
+                    <a th:href="@{/admin}">Admin page</a>
                 </nav>
             </div>
         </div>

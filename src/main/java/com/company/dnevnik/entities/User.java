@@ -1,33 +1,35 @@
 package com.company.dnevnik.entities;
 
+import com.company.dnevnik.controllers.MainController;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@NoArgsConstructor
 @Builder
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@Entity
 @Table(name = "users")
-
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
+    @NotNull
     @Column(name = "login", unique = true)
     String login;
 
+    @NotNull
     @Column(name = "password")
     String password;
 
-    @Column(name = "email")
-    String email;
+    @NotNull
+    @Column(name = "is_active")
+    int isActive;
 }

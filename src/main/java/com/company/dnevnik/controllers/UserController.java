@@ -17,7 +17,7 @@ public class UserController {
     }
     @GetMapping("/new")
     public String getSaveNewUser(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("users", new User());
         return "user/userSaving";
     }
     @PostMapping
@@ -33,6 +33,6 @@ public class UserController {
     @GetMapping("/delete/{userId}")
     public String deleteUser(@PathVariable("userId") Long userId){
         userService.deleteUserById(userId);
-        return "redirect:/user/usersList";
+        return "redirect:/users/usersList";
     }
 }
