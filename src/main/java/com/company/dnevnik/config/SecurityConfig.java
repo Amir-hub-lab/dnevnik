@@ -1,5 +1,6 @@
 package com.company.dnevnik.config;
 
+import com.company.dnevnik.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.context.annotation.Bean;
         import org.springframework.context.annotation.Configuration;
@@ -14,36 +15,47 @@ import org.springframework.beans.factory.annotation.Autowired;
 
         import javax.sql.DataSource;
 
-@EnableWebSecurity
 @Configuration
-@EnableGlobalMethodSecurity(
-        prePostEnabled = true,
-        securedEnabled = true,
-        jsr250Enabled = true)
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Autowired
-    private DataSource dataSource;
+    UserService userService;
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select login, password, is_active from users where login = ?")
-                .authoritiesByUsernameQuery("select u.login, ur.role_name " +
-                        " from users u inner join roles ur on ur.user_id = u.id " +
-                        " where u.login = ?");
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .csrf()
+                .disable()
+                .authorizeRequests()
+                //Доступ только для не зарегистрированных пользователей
+                .antMatchers("/registration").not().fullyAuthenticated()
+                //Доступ только для пользователей с ролью Администратор
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/news").hasRole("USER")
+                //Доступ разрешен всем пользователей
+                .antMatchers("/", "/resources/**").permitAll()
+                //Все остальные страницы требуют аутентификации
+                .anyRequest().authenticated()
+                .and()
+                //Настройка для входа в систему
+                .formLogin()
+                .loginPage("/login")
+                //Перенарпавление на главную страницу после успешного входа
+                .defaultSuccessUrl("/")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll()
+                .logoutSuccessUrl("/");
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated()
-                .antMatchers("/admin").hasRole("ROLE_ADMIN")
-                .and().httpBasic().and().csrf().disable();
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
     }
 }
