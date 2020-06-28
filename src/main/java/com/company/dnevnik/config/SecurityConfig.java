@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.security.config.annotation.web.builders.HttpSecurity;
         import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
         import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-        import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
         import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
-        import javax.sql.DataSource;
+import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +29,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
+
+    @Bean //бин нужен для контроллирования конкурентных соединений по одной учетке
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
+
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
@@ -36,9 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/registration").not().fullyAuthenticated()
                 //Доступ только для пользователей с ролью Администратор
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/news").hasRole("USER")
                 //Доступ разрешен всем пользователей
                 .antMatchers("/", "/resources/**").permitAll()
+                .antMatchers("/instructions").permitAll()
                 //Все остальные страницы требуют аутентификации
                 .anyRequest().authenticated()
                 .and()
@@ -51,7 +65,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .permitAll()
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/login")
+                .and()
+                .sessionManagement()
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true)
+                .sessionRegistry(sessionRegistry());
     }
 
     @Autowired

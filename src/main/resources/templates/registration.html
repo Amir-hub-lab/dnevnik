@@ -13,7 +13,7 @@
 <body>
 
 <div>
-    Register
+    Registration
     <form action="#" th:action="@{/registration}" th:object="${userForm}" method="post">
        <br>
         <input type="text" name="username" th:name="username" placeholder="username">
@@ -21,6 +21,7 @@
         <input type="password" name="passwordConfirm" th:name="passwordConfirm" placeholder="confirm password">
         <button type="submit">Submit</button><button type="reset">Reset</button>
     </form>
+    <a href="/login">Login</a>
     <br><br>
 </div>
 

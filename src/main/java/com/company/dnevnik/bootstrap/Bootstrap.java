@@ -13,11 +13,8 @@ public class Bootstrap implements CommandLineRunner {
     @Autowired
     RoleRepository roleRepository;
 
-
     @Override
     public void run(String... args) throws Exception {
-
-
 
         if (!roleRepository.findById(1L).isPresent()) {
             roleRepository.save(Role.builder().name("ROLE_PARENT").build());
