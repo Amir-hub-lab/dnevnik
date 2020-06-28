@@ -1,27 +1,14 @@
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Main page</title>
+    <title>Welcome page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
-
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header_inner">
-                <div class="header_logo">ProGrade</div>
-                <nav class="nav">
-                    <a class="nav_link" href="/instruction">Instruction</a>
-                    <a th:href="@{/admin}">Admin page</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-    <div class="intro">
-        <div class="container">
-        </div>
-    </div>
+    <a class="nav_link" href="/login">Sign in</a>
+    <a class="nav_link" href="/registration">Sign up</a>
 </body>
 </html>

@@ -2,8 +2,10 @@ package com.company.dnevnik.bootstrap;
 
 import com.company.dnevnik.entities.Role;
 import com.company.dnevnik.repositories.RoleRepository;
+import com.company.dnevnik.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -11,7 +13,13 @@ import org.springframework.stereotype.Component;
 public class Bootstrap implements CommandLineRunner {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,6 +33,7 @@ public class Bootstrap implements CommandLineRunner {
         if (!roleRepository.findById(3L).isPresent()) {
             roleRepository.save(Role.builder().name("ROLE_ADMIN").build());
         }
+
 
 
     }

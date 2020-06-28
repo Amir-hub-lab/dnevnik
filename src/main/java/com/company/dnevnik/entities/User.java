@@ -31,6 +31,9 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Group> groups;
+
     public User() {
     }
 
@@ -100,4 +103,5 @@ public class User implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }

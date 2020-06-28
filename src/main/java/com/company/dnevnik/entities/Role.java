@@ -16,6 +16,7 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
     private String name;

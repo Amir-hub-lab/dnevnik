@@ -31,8 +31,8 @@ public class HW {
     Date date = new Date();
 
     @OneToOne
-    @JoinColumn(name = "topic_id", referencedColumnName = "id")
-    Topic topic;
+    @JoinColumn(name = "discipline_id", referencedColumnName = "id")
+    Discipline discipline;
 
     @ManyToOne
     @JoinColumn(name = "report_card_id", referencedColumnName = "id")

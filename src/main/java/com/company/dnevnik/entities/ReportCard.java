@@ -23,8 +23,8 @@ public class ReportCard {
     @JoinColumn(name = "HW_id", referencedColumnName = "id")
     HW hw;
     @ManyToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
-    Student student;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    User user;
     @ManyToOne
     @JoinColumn(name = "discipline_id", referencedColumnName = "id")
     Discipline discipline;
