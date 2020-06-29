@@ -25,6 +25,9 @@ public class HW {
     @Column(name = "comment_text")
     String commentText;
 
+    @Column(name = "mark")
+    Integer mark;
+
     @Builder.Default
     @CreatedDate
     @Column(name = "date")

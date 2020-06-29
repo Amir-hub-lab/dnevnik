@@ -25,16 +25,14 @@ public class Bootstrap implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (!roleRepository.findById(1L).isPresent()) {
-            roleRepository.save(Role.builder().name("ROLE_PARENT").build());
+            roleRepository.save(Role.builder().name("ROLE_STUDENT").build());
         }
         if (!roleRepository.findById(2L).isPresent()) {
-            roleRepository.save(Role.builder().name("ROLE_STUDENT").build());
+            roleRepository.save(Role.builder().name("ROLE_TEACHER").build());
         }
         if (!roleRepository.findById(3L).isPresent()) {
             roleRepository.save(Role.builder().name("ROLE_ADMIN").build());
         }
-
-
 
     }
 }

@@ -1,6 +1,7 @@
 package com.company.dnevnik.controllers;
 
 import com.company.dnevnik.services.UserService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +20,6 @@ public class AdminController {
         model.addAttribute("allUsers", userService.allUsers());
         return "admin";
     }
-
     @PostMapping("/admin")
     public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action,
